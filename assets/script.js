@@ -142,45 +142,102 @@ function LoadHighScoreInput() {
 
 function AddHighScore(event) {
     event.preventDefault();
-
-    for(var i = 0; i < maxStoredScores; i++)
-    {
-        //if we've reached the end and there's still space, store score
-        if(localStorage.getItem("score" + i) === null) {
-            localStorage.setItem("score" + i, timeLeft);
-            break;
-        } 
-        //if we reach a point where the next score up is worse than this one, insert this one and push the rest back
-        else if (Number(localStorage.getItem("score" + i) > timeLeft)) {
-
+    var initials = document.querySelector("#initials").value;
+    if(initials.length === 0) {
+        alert("Please enter initials.");
+        return;
+    }
+    var data = JSON.parse(localStorage.getItem("scoreData"));
+    var thissave = initials + "_" + timeLeft;
+    //If no saved data yet, initiate it.
+    if(data === null) {
+        data = [thissave];  
+    }
+    //If saved data is maxed and this score is worse than last, don't store it
+    else if(data.length >= maxStoredScores && Number(data[data.length - 1].split('_')[1]) >= timeLeft) {
+        bottomOutputEl.textContent = "Score not in top " + maxStoredScores + ", sorry.";
+    }
+    //Otherwise go through all scores until we find our place 
+    else {
+        for(var i = 0; i < maxStoredScores; i++)
+        {
+            //if we've reached the end and there's still space, store score
+            if(i >= data.length) {
+                data.push(thissave);
+                break;
+            } 
+            //if we reach a point where stored score is worse than this one, insert this one and push the rest back
+            else if (Number(data[i].split('_')[1]) < timeLeft) {
+                data.splice(i,0,thissave);
+                break;
+            }
         }
     }
+
+    localStorage.setItem("scoreData", JSON.stringify(data));
 
     ViewHighScores();
 }
 
 function ViewHighScores() {
-    console.log(localStorage.getItem("hi"));
-
+    //Fresh page for displaying scores, stop timer
     ClearPage();
     middleOutputEl.setAttribute("class", "prompt");
     clearInterval(timerInterval);
 
     topOutputEl.textContent = "Highscores";
     
-    //TODO for each high score in storage, create a block element with alternating background (via .css) with the info on it
+    //Read data array from local storage
+    var data = JSON.parse(localStorage.getItem("scoreData"));
 
+    //If no data, give a message.
+    if(data === null) {
+        var noscorep = document.createElement("p");
+        noscorep.textContent = "No scores yet - try playing!";
+        middleOutputEl.append(noscorep);
+    } else {
+        var list = document.createElement("ol");
+        for(var i = 0; i < data.length; i++)
+        {
+            //split initials and score, format initials to be consistent length
+            var split = data[i].split('_');
+            var output = split[0];
+            for(var j = output.length; j < 3; j++) {
+                output += " ";
+            }
+
+            //create output list item with score that will be stylized in css
+            var displayblock = document.createElement("li");
+            displayblock.setAttribute("class","score-display");
+            var displayformat = document.createElement("pre");
+            //set pre element to add whitespace and to make text white while list numbers remain black
+            displayformat.setAttribute("style", "font-family:'Courier New', Courier, monospace; color:white;");
+            displayformat.textContent = output + " - " + split[1];
+            displayblock.append(displayformat);
+            list.append(displayblock);
+        }
+        middleOutputEl.append(list);
+    }
+    //Create button to return to starting page
     var backButton = document.createElement("button");
     backButton.setAttribute("style", "display:inline;");
     backButton.textContent = "Go Back";
     backButton.addEventListener("click", LoadMainPage);
-    var resetButton = document.createElement("button");
-    resetButton.setAttribute("style", "display:inline;");
-    resetButton.textContent = "Clear Scores";
-    //TODO set reset event handler, to a function that clears local storage
-
     middleOutputEl.append(backButton);
-    middleOutputEl.append(resetButton);
+
+    //Create button to clear scores, unless there are none
+    if(data !== null) {
+        var resetButton = document.createElement("button");
+        resetButton.setAttribute("style", "display:inline;");
+        resetButton.textContent = "Clear Scores";
+        resetButton.addEventListener("click", ResetHighScores);
+        middleOutputEl.append(resetButton);
+    }
+}
+
+function ResetHighScores() {
+    localStorage.removeItem("scoreData");
+    ViewHighScores();
 }
 
 function DisplayCorrectness(correct) {
