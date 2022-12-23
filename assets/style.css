@@ -8,6 +8,8 @@
 header {
     display:flex;
     justify-content:space-between;
+    background-color:#0000FF;
+    color:white;
 }
 header p {
     display:inline; 
@@ -40,7 +42,7 @@ button {
     padding:0 10px;
     margin:10px;
     height:50px;
-    background-color:purple;
+    background-color:#0000FF;
     color:white;
     border-radius:20px;
     font-family:'Courier New', Courier, monospace;
@@ -78,4 +80,14 @@ button {
     font-style:italic;
     font-size:20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*alternating backgrounds in highscore display*/
+.score-display {
+    background-color:#0000FF;
+    padding:5px;
+    text-align:left;
+}
+.score-display:nth-child(2n) {
+    background-color:#4444FF;
 }
