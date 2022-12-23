@@ -3,6 +3,8 @@
     padding:0;
     box-sizing: border-box;
 }
+
+/*split header content to screen edges*/
 header {
     display:flex;
     justify-content:space-between;
@@ -13,7 +15,44 @@ header p {
     margin:10px;
 }
 
+/*align main contents centered atop each other*/
 main {
     margin-top:50px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+main>* {
     text-align:center;
+    max-width:600px;
+    width:80%;
+}
+
+/*stylize quiz buttons*/
+button {
+    display:block;
+    margin:10px;
+    width: 150px;
+    height: 50px;
+    background-color:purple;
+    color:white;
+    border-radius:20px;
+    font-family:'Courier New', Courier, monospace;
+    font-size:18px;
+}
+
+/*adjust margins/fonts in content sections*/
+#content-head {
+    font-family:'Papyrus',serif;
+}
+#content-main {
+    margin:30px;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#correctness-display {
+    color:gray;
+    font-style:italic;
+    font-size:20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
