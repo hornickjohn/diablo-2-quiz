@@ -15,6 +15,12 @@ header p {
     margin:10px;
 }
 
+/*reactive hover for highscores link in header*/
+.hover:hover {
+    box-shadow: 0 0 5px 5px gray;
+    cursor:pointer;
+}
+
 /*align main contents centered atop each other*/
 main {
     margin-top:50px;
@@ -28,12 +34,12 @@ main>* {
     width:80%;
 }
 
-/*stylize quiz buttons*/
+/*stylize buttons*/
 button {
     display:block;
+    padding:0 10px;
     margin:10px;
-    width: 150px;
-    height: 50px;
+    height:50px;
     background-color:purple;
     color:white;
     border-radius:20px;
@@ -41,14 +47,31 @@ button {
     font-size:18px;
 }
 
+/*stylize specifically buttons that are in the section of answers to a quiz question*/
+.answers button {
+    width: 40%;
+    max-width:280px;
+    height:150px;
+    font-size:24px;
+}
+
 /*adjust margins/fonts in content sections*/
 #content-head {
     font-family:'Papyrus',serif;
+    font-size:50px;
 }
 #content-main {
     margin:30px;
     font-size: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#content-main.answers {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+#content-main p, #content-main input {
+    margin:15px;
 }
 #correctness-display {
     color:gray;
