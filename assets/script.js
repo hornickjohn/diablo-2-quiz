@@ -78,7 +78,7 @@ function ProgressQuiz(e) {
                 //if no time left, end quiz
                 if(timeLeft <= 0) {
                     ViewHighScores();
-                    clearInterval(interval);
+                    clearInterval(timerInterval);
                 }
             }, 1000);
             //Set class on div for button styling
