@@ -1,4 +1,4 @@
-# Javascript Quiz
+# Diablo II Quiz
 
 ## Description
 
