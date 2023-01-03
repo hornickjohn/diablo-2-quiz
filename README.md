@@ -12,7 +12,7 @@ N/A
 
 Click "View Highscores" to the upper-left to see a ranked list of previous highscores. In the opposite top corner is a timer which will run while taking the quiz. After clicking "Start Quiz" you will be presented one-by-one with a series of questions, and four answer buttons for each. Selecting the wrong one will reduce remaining time. If you finish with time left on the clock, you will be prompted to type up to three initials, and store your score in the high scores under them. 
 
-To view the deployed product, visit: https://hornickjohn.github.io/javascript-quiz/
+To view the deployed product, visit: [Diablo II Quiz](https://hornickjohn.github.io/diablo-2-quiz/)
 
 ## Credits
 
