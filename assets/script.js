@@ -205,7 +205,7 @@ function ViewHighScores() {
         {
             //split initials and score, format initials to be consistent length
             var split = data[i].split('_');
-            var output = split[0];
+            var output = split[0].toUpperCase();
             for(var j = output.length; j < 3; j++) {
                 output += " ";
             }

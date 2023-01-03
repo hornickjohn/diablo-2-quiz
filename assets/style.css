@@ -1,3 +1,8 @@
+:root {
+    --theme-color: #0000FF;
+    --theme-color-secondary: #4444FF;
+}
+
 * {
     margin:0;
     padding:0;
@@ -8,7 +13,7 @@
 header {
     display:flex;
     justify-content:space-between;
-    background-color:#0000FF;
+    background-color:var(--theme-color);
     color:white;
 }
 header p {
@@ -42,7 +47,7 @@ button {
     padding:0 10px;
     margin:10px;
     height:50px;
-    background-color:#0000FF;
+    background-color:var(--theme-color);
     color:white;
     border-radius:20px;
     font-family:'Courier New', Courier, monospace;
@@ -84,10 +89,10 @@ button {
 
 /*alternating backgrounds in highscore display*/
 .score-display {
-    background-color:#0000FF;
+    background-color:var(--theme-color);
     padding:5px;
     text-align:left;
 }
 .score-display:nth-child(2n) {
-    background-color:#4444FF;
+    background-color:var(--theme-color-secondary);
 }
