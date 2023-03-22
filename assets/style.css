@@ -62,6 +62,11 @@ button {
     font-size:24px;
 }
 
+button:hover {
+    fitler:brightness(150%);
+    cursor:pointer;
+}
+
 /*adjust margins/fonts in content sections*/
 #content-head {
     font-family:'Papyrus',serif;
